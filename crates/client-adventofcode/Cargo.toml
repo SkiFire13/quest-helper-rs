@@ -1,0 +1,10 @@
+[package]
+name = "quest-client-adventofcode"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+quest-runner = { path = "../runner" }
+
+jiff = "1"
+ureq = { version = "3", features = ["cookies", "json"] }

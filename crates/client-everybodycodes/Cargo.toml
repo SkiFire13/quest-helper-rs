@@ -1,0 +1,13 @@
+[package]
+name = "quest-client-everybodycodes"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+quest-runner = { path = "../runner" }
+
+aes = "0.9"
+cbc = { version = "0.2", features = ["alloc"] }
+hex = "0.4"
+serde = { version = "1", features = ["derive"] }
+ureq = { version = "3", features = ["cookies", "json"] }

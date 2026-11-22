@@ -1,0 +1,10 @@
+[package]
+name = "quest-helper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+quest-macros = { path = "../macros" }
+quest-runner = { path = "../runner" }
+quest-client-adventofcode = { path = "../client-adventofcode" }
+quest-client-everybodycodes = { path = "../client-everybodycodes" }

@@ -1,0 +1,10 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/client-adventofcode",
+    "crates/client-everybodycodes",
+    "crates/helper",
+    "crates/macros",
+    "crates/runner",
+    "crates/utils",
+]

@@ -33,16 +33,19 @@ impl SetupInfo {
             return;
         }
 
-        let insert_pos = if day > 1 {
-            let prev_line = format!("mod day{};", day - 1);
-            if let Some(i) = main_content.find(&prev_line) {
-                i + prev_line.len()
-            } else {
-                0
-            }
-        } else {
-            0
-        };
+        let insert_pos = (day > 1)
+            .then(|| {
+                let prev_line = format!("mod day{};", day - 1);
+                let i = main_content.find(&prev_line)?;
+                Some(i + prev_line.len())
+            })
+            .flatten()
+            .or_else(|| {
+                let line = main_content.lines().find(|l| !l.starts_with("use "))?;
+                let i = line.as_ptr() as usize - main_content.as_ptr() as usize;
+                Some(i)
+            })
+            .unwrap_or(0);
 
         let newlines = if day % 10 == 0 { "\n\n" } else { "\n" };
         main_content.replace_range(insert_pos..insert_pos, &format!("{newlines}{new_line}"));

@@ -44,7 +44,8 @@ impl SetupInfo {
             0
         };
 
-        main_content.replace_range(insert_pos..insert_pos, &format!("\n{new_line}"));
+        let newlines = if day % 10 == 0 { "\n\n" } else { "\n" };
+        main_content.replace_range(insert_pos..insert_pos, &format!("{newlines}{new_line}"));
 
         std::fs::write(&main_path, &main_content).expect("Failed to update main");
     }

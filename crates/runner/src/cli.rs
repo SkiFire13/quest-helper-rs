@@ -27,6 +27,9 @@ pub struct RunCmd {
 
 #[derive(Subcommand, Debug)]
 pub enum CliCmd {
-    Setup,
+    Setup {
+        #[arg(short, long)]
+        day: Option<u32>,
+    },
     Run(RunCmd),
 }

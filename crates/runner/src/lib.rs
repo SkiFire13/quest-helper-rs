@@ -25,7 +25,7 @@ pub fn run(client: &dyn Client, event: &str, setup_info: SetupInfo) {
 
     if let Some(cmd) = args.subcommand {
         match cmd {
-            cli::CliCmd::Setup => run_setup(&registry, setup_info),
+            cli::CliCmd::Setup { day } => run_setup(&registry, setup_info, day),
             cli::CliCmd::Run(run_cmd) => run_runner(client, event, registry, &run_cmd),
         }
     } else {
@@ -33,8 +33,8 @@ pub fn run(client: &dyn Client, event: &str, setup_info: SetupInfo) {
     }
 }
 
-fn run_setup(registry: &Registry, setup_info: SetupInfo) {
-    let day = registry.get_last_day().map_or(1, |day| day + 1);
+fn run_setup(registry: &Registry, setup_info: SetupInfo, day: Option<u32>) {
+    let day = day.unwrap_or_else(|| registry.get_last_day().map_or(1, |day| day + 1));
     setup_info.write_template(day);
 }
 
